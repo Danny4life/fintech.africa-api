@@ -1,6 +1,7 @@
 package com.osiki.fintechafricaui.controller;
 
 import com.osiki.fintechafricaui.entity.Users;
+import com.osiki.fintechafricaui.event.RegistrationCompleteEvent;
 import com.osiki.fintechafricaui.model.UsersModel;
 import com.osiki.fintechafricaui.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,10 @@ public class UsersController {
     public String createUsersAccount(@RequestBody UsersModel usersModel){
 
         Users user = usersService.createUsersAccount(usersModel);
-        publisher.publishEvent();
+        publisher.publishEvent(new RegistrationCompleteEvent(
+                user,
+                "url"
+        ));
 
         return "Registration Successful";
 
