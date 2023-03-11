@@ -4,6 +4,7 @@ import com.osiki.fintechafricaui.entity.Users;
 import com.osiki.fintechafricaui.model.UsersModel;
 import com.osiki.fintechafricaui.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,9 +14,13 @@ public class UsersController {
     @Autowired
     private UsersService usersService;
 
+    @Autowired
+    private ApplicationEventPublisher publisher;
+
     public String createUsersAccount(@RequestBody UsersModel usersModel){
 
         Users user = usersService.createUsersAccount(usersModel);
+        publisher.publishEvent();
 
         return "Registration Successful";
 
