@@ -2,11 +2,20 @@ package com.osiki.fintechafricaui.services.serviceImpl;
 
 import com.osiki.fintechafricaui.entity.Users;
 import com.osiki.fintechafricaui.model.UsersModel;
+import com.osiki.fintechafricaui.respository.UsersRepository;
 import com.osiki.fintechafricaui.services.UsersService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UsersServiceImpl implements UsersService {
+
+    @Autowired
+    private UsersRepository usersRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @Override
     public Users createUsersAccount(UsersModel usersModel) {
 
@@ -19,7 +28,7 @@ public class UsersServiceImpl implements UsersService {
         user.setBvn(usersModel.getBvn());
         user.setPin(user.getPin());
         user.setRole("User");
-        user.setPassword(usersModel.getPassword());
+        user.setPassword(passwordEncoder.encode(usersModel.getPassword()));
         return null;
     }
 }
