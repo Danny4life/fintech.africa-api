@@ -1,6 +1,5 @@
 package com.osiki.fintechafricaui.entity;
 
-import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -9,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "user_tbl")
 
-public class User {
+public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,6 +18,7 @@ public class User {
     private String email;
     @Column(length = 11)
     private String phoneNumber;
+    @Column(length = 60)
     private String password;
     @Column(length = 11)
     private String bvn;
