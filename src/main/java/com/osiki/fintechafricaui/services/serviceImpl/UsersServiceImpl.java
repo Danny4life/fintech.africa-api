@@ -29,6 +29,8 @@ public class UsersServiceImpl implements UsersService {
         user.setPin(user.getPin());
         user.setRole("User");
         user.setPassword(passwordEncoder.encode(usersModel.getPassword()));
-        return null;
+
+        usersRepository.save(user);
+        return user;
     }
 }
