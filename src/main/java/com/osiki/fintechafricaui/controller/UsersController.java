@@ -17,5 +17,7 @@ public class UsersController {
 
         Users user = usersService.createUsersAccount(usersModel);
 
+        return "Registration Successful";
+
     }
 }
