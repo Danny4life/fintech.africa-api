@@ -1,8 +1,13 @@
 package com.osiki.fintechafricaui.event;
 
 import com.osiki.fintechafricaui.entity.Users;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.context.ApplicationEvent;
 
+@Getter
+@Setter
 public class RegistrationCompleteEvent extends ApplicationEvent {
 
     private Users user;
