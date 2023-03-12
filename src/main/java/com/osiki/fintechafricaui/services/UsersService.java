@@ -22,4 +22,6 @@ public interface UsersService {
     String validatePasswordResetToken(String token);
 
     Optional<Users> getUserByPasswordResetToken(String token);
+
+    void changePassword(Users users, String newPassword);
 }
