@@ -3,6 +3,7 @@ package com.osiki.fintechafricaui.controller;
 import com.osiki.fintechafricaui.entity.Users;
 import com.osiki.fintechafricaui.entity.VerificationToken;
 import com.osiki.fintechafricaui.event.RegistrationCompleteEvent;
+import com.osiki.fintechafricaui.model.PasswordModel;
 import com.osiki.fintechafricaui.model.UsersModel;
 import com.osiki.fintechafricaui.services.UsersService;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +12,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.UUID;
 
 @RestController
 @Slf4j
@@ -61,6 +63,22 @@ public class UsersController {
         resendVerificationTokenMail(user, applicationUrl(request), verificationToken);
 
         return "Verification link sent";
+
+    }
+    @PostMapping("/resetPassword")
+    public String resetPassword(@RequestBody PasswordModel passwordModel, HttpServletRequest request){
+
+        Users user = usersService.findUserByEmail(passwordModel.getEmail());
+
+        String url = "";
+
+        if(user != null){
+            String token = UUID.randomUUID().toString();
+            usersService.createPasswordResetTokenForUser(user, token);
+            url = passwordResetTokenMail(user, applicationUrl(request), token);
+        }
+
+        return url;
 
     }
 
