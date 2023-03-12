@@ -5,4 +5,6 @@ import com.osiki.fintechafricaui.model.UsersModel;
 
 public interface UsersService {
     Users createUsersAccount(UsersModel usersModel);
+
+    void saveVerificationTokenForUser(Users user, String token);
 }

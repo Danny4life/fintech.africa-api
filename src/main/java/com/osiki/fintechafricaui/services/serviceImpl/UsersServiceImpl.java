@@ -33,4 +33,9 @@ public class UsersServiceImpl implements UsersService {
         usersRepository.save(user);
         return user;
     }
+
+    @Override
+    public void saveVerificationTokenForUser(Users user, String token) {
+
+    }
 }
