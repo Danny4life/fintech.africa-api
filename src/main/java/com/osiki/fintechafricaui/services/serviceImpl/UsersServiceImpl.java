@@ -29,9 +29,9 @@ public class UsersServiceImpl implements UsersService {
         user.setFirstName(usersModel.getFirstName());
         user.setLastName(usersModel.getLastName());
         user.setEmail(usersModel.getEmail());
-        user.setPhoneNumber(user.getPhoneNumber());
+        user.setPhoneNumber(usersModel.getPhoneNumber());
         user.setBvn(usersModel.getBvn());
-        user.setPin(user.getPin());
+        user.setPin(usersModel.getPin());
         user.setRole("User");
         user.setPassword(passwordEncoder.encode(usersModel.getPassword()));
 
