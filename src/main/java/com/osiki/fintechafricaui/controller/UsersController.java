@@ -82,6 +82,20 @@ public class UsersController {
 
     }
 
+    private String passwordResetTokenMail(Users user, String applicationUrl, String token) {
+
+        String url =
+                applicationUrl
+                        + "/savePassword?token="
+                        + token;
+
+        //sendVerificationEmail()
+        log.info("Click the link to reset your password: {}",
+                url);
+
+        return url;
+    }
+
     //take this to event package
     public void resendVerificationTokenMail(Users user, String applicationUrl, VerificationToken verificationToken){
         String url =
