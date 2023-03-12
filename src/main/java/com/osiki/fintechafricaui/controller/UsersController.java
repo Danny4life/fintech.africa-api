@@ -64,7 +64,6 @@ public class UsersController {
 
     }
 
-
     public void resendVerificationTokenMail(Users user, String applicationUrl, VerificationToken verificationToken){
         String url =
                 applicationUrl
