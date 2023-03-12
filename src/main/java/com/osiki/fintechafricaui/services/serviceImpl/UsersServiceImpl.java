@@ -144,4 +144,9 @@ public class UsersServiceImpl implements UsersService {
         users.setPassword(passwordEncoder.encode(newPassword));
         usersRepository.save(users);
     }
+
+    @Override
+    public boolean checkIfValidOldPassword(Users user, String oldPassword) {
+        return passwordEncoder.matches(oldPassword, user.getPassword());
+    }
 }
