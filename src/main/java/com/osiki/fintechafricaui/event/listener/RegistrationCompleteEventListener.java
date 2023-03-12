@@ -26,7 +26,7 @@ public class RegistrationCompleteEventListener implements
 
         String token = UUID.randomUUID().toString();
 
-        usersService.saveVerificationTokenForUser(user, token);
+        usersService.saveVerificationTokenForUser(token, user);
 
         //send mail to user
 

@@ -35,7 +35,7 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public void saveVerificationTokenForUser(Users user, String token) {
+    public void saveVerificationTokenForUser(String token, Users user) {
 
     }
 }
