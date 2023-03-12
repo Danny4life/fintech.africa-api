@@ -12,4 +12,6 @@ public interface UsersService {
     String validateVerificationToken(String token);
 
     VerificationToken generateNewVerificationToken(String oldToken);
+
+    Users findUserByEmail(String email);
 }

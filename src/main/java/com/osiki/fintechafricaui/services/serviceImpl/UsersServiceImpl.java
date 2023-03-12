@@ -91,4 +91,9 @@ public class UsersServiceImpl implements UsersService {
 
         return verificationToken;
     }
+
+    @Override
+    public Users findUserByEmail(String email) {
+        return usersRepository.findByEmail(email);
+    }
 }
