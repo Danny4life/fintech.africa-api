@@ -14,4 +14,6 @@ public interface UsersService {
     VerificationToken generateNewVerificationToken(String oldToken);
 
     Users findUserByEmail(String email);
+
+    void createPasswordResetTokenForUser(Users user, String token);
 }
