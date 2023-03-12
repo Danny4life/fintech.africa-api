@@ -5,6 +5,7 @@ import com.osiki.fintechafricaui.entity.VerificationToken;
 import com.osiki.fintechafricaui.event.RegistrationCompleteEvent;
 import com.osiki.fintechafricaui.model.UsersModel;
 import com.osiki.fintechafricaui.services.UsersService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
+@Slf4j
 public class UsersController {
 
     @Autowired
@@ -26,7 +28,7 @@ public class UsersController {
         Users user = usersService.createUsersAccount(usersModel);
         publisher.publishEvent(new RegistrationCompleteEvent(
                 user,
-                application(request)
+                applicationUrl(request)
         ));
 
         return "Registration Successful";
@@ -46,15 +48,6 @@ public class UsersController {
 
     }
 
-    private String application(HttpServletRequest request) {
-
-        return "http://" +
-                request.getServerName() +
-                ":" +
-                request.getServerPort() +
-                request.getContextPath();
-    }
-
     @GetMapping("/resendVerifyToken")
 
     public String resendVerificationToken(@RequestParam("token") String oldToken,
@@ -69,5 +62,26 @@ public class UsersController {
 
         return "Verification link sent";
 
+    }
+
+
+    public void resendVerificationTokenMail(Users user, String applicationUrl, VerificationToken verificationToken){
+        String url =
+                applicationUrl
+                        + "/verifyRegistration?token="
+                        + verificationToken.getToken();
+
+        //sendVerificationEmail()
+        log.info("Click the link to verify your account: {}",
+                url);
+    }
+
+    private String applicationUrl(HttpServletRequest request) {
+
+        return "http://" +
+                request.getServerName() +
+                ":" +
+                request.getServerPort() +
+                request.getContextPath();
     }
 }
