@@ -1,8 +1,10 @@
 package com.osiki.fintechafricaui.services.serviceImpl;
 
+import com.osiki.fintechafricaui.entity.PasswordResetToken;
 import com.osiki.fintechafricaui.entity.Users;
 import com.osiki.fintechafricaui.entity.VerificationToken;
 import com.osiki.fintechafricaui.model.UsersModel;
+import com.osiki.fintechafricaui.respository.PasswordResetTokenRepository;
 import com.osiki.fintechafricaui.respository.UsersRepository;
 import com.osiki.fintechafricaui.respository.VerificationTokenRepository;
 import com.osiki.fintechafricaui.services.UsersService;
@@ -24,6 +26,9 @@ public class UsersServiceImpl implements UsersService {
 
     @Autowired
     private VerificationTokenRepository verificationTokenRepository;
+
+    @Autowired
+    private PasswordResetTokenRepository passwordResetTokenRepository;
     @Override
     public Users createUsersAccount(UsersModel usersModel) {
 
@@ -99,6 +104,8 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public void createPasswordResetTokenForUser(Users user, String token) {
+        PasswordResetToken passwordResetToken = new PasswordResetToken(user, token);
 
+        passwordResetTokenRepository.save(passwordResetToken);
     }
 }
