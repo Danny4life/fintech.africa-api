@@ -96,4 +96,9 @@ public class UsersServiceImpl implements UsersService {
     public Users findUserByEmail(String email) {
         return usersRepository.findByEmail(email);
     }
+
+    @Override
+    public void createPasswordResetTokenForUser(Users user, String token) {
+
+    }
 }
