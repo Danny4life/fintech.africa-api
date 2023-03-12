@@ -1,6 +1,7 @@
 package com.osiki.fintechafricaui.controller;
 
 import com.osiki.fintechafricaui.entity.Users;
+import com.osiki.fintechafricaui.entity.VerificationToken;
 import com.osiki.fintechafricaui.event.RegistrationCompleteEvent;
 import com.osiki.fintechafricaui.model.UsersModel;
 import com.osiki.fintechafricaui.services.UsersService;
@@ -52,5 +53,21 @@ public class UsersController {
                 ":" +
                 request.getServerPort() +
                 request.getContextPath();
+    }
+
+    @GetMapping("/resendVerifyToken")
+
+    public String resendVerificationToken(@RequestParam("token") String oldToken,
+                                          HttpServletRequest request){
+
+        VerificationToken verificationToken =
+                usersService.generateNewVerificationToken(oldToken);
+
+        Users user = verificationToken.getUser();
+
+        resendVerificationTokenMail(user, applicationUrl(request), verificationToken);
+
+        return "Verification link sent";
+
     }
 }

@@ -59,6 +59,7 @@ public class UsersServiceImpl implements UsersService {
             return "invalid";
         }
 
+        // get the user verification token
         Users user = verificationToken.getUser();
 
         Calendar cal = Calendar.getInstance();
@@ -70,9 +71,15 @@ public class UsersServiceImpl implements UsersService {
             return "expired";
         }
 
+        // enable the user if verification is valid
         user.setEnabled(true);
         usersRepository.save(user);
 
         return "valid";
+    }
+
+    @Override
+    public VerificationToken generateNewVerificationToken(String oldToken) {
+        return null;
     }
 }
