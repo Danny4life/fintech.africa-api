@@ -4,6 +4,8 @@ import com.osiki.fintechafricaui.entity.Users;
 import com.osiki.fintechafricaui.entity.VerificationToken;
 import com.osiki.fintechafricaui.model.UsersModel;
 
+import java.util.Optional;
+
 public interface UsersService {
     Users createUsersAccount(UsersModel usersModel);
 
@@ -18,4 +20,6 @@ public interface UsersService {
     void createPasswordResetTokenForUser(Users user, String token);
 
     String validatePasswordResetToken(String token);
+
+    Optional<Users> getUserByPasswordResetToken(String token);
 }

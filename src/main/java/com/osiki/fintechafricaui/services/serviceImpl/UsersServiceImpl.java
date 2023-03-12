@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -131,5 +132,10 @@ public class UsersServiceImpl implements UsersService {
         }
         return "valid";
 
+    }
+
+    @Override
+    public Optional<Users> getUserByPasswordResetToken(String token) {
+        return Optional.ofNullable(passwordResetTokenRepository.findByToken(token).getUser());
     }
 }
