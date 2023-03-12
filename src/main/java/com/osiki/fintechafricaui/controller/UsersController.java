@@ -6,8 +6,11 @@ import com.osiki.fintechafricaui.model.UsersModel;
 import com.osiki.fintechafricaui.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 public class UsersController {
@@ -18,15 +21,25 @@ public class UsersController {
     @Autowired
     private ApplicationEventPublisher publisher;
 
-    public String createUsersAccount(@RequestBody UsersModel usersModel){
+    @PostMapping("/register")
+    public String createUsersAccount(@RequestBody UsersModel usersModel, final HttpServletRequest request){
 
         Users user = usersService.createUsersAccount(usersModel);
         publisher.publishEvent(new RegistrationCompleteEvent(
                 user,
-                "url"
+                application(request)
         ));
 
         return "Registration Successful";
 
+    }
+
+    private String application(HttpServletRequest request) {
+
+        return "http://" +
+                request.getServerName() +
+                ":" +
+                request.getServerPort() +
+                request.getContextPath();
     }
 }
