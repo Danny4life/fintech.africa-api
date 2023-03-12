@@ -64,10 +64,11 @@ public class UsersController {
 
     }
 
+    //take this to event package
     public void resendVerificationTokenMail(Users user, String applicationUrl, VerificationToken verificationToken){
         String url =
                 applicationUrl
-                        + "/verifyRegistration?token="
+                        + "/verifyRegistration?token=" // change link to resendVerifyToken
                         + verificationToken.getToken();
 
         //sendVerificationEmail()
