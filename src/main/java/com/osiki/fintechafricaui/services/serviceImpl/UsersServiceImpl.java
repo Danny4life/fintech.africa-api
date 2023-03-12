@@ -1,8 +1,10 @@
 package com.osiki.fintechafricaui.services.serviceImpl;
 
 import com.osiki.fintechafricaui.entity.Users;
+import com.osiki.fintechafricaui.entity.VerificationToken;
 import com.osiki.fintechafricaui.model.UsersModel;
 import com.osiki.fintechafricaui.respository.UsersRepository;
+import com.osiki.fintechafricaui.respository.VerificationTokenRepository;
 import com.osiki.fintechafricaui.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,6 +18,9 @@ public class UsersServiceImpl implements UsersService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private VerificationTokenRepository verificationTokenRepository;
     @Override
     public Users createUsersAccount(UsersModel usersModel) {
 
@@ -36,6 +41,10 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public void saveVerificationTokenForUser(String token, Users user) {
+
+        VerificationToken verificationToken = new VerificationToken(user, token);
+
+        verificationTokenRepository.save(verificationToken);
 
     }
 }
