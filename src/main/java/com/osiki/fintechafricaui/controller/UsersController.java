@@ -105,6 +105,22 @@ public class UsersController {
 
     }
 
+
+    @PostMapping("/changePassword")
+    public String changePassword(@RequestBody PasswordModel passwordModel){
+        Users user = usersService.findUserByEmail(passwordModel.getEmail());
+
+        if(!usersService.checkIfValidOldPassword(user, passwordModel.getOldPassword())){
+            return "Invalid old password";
+        }
+
+        //save password
+
+        usersService.changePassword(user, passwordModel.getNewPassword());
+        return "Password changed successfully";
+
+    }
+
     private String passwordResetTokenMail(Users user, String applicationUrl, String token) {
 
         String url =
