@@ -2,7 +2,9 @@ package com.osiki.fintechafricaui.services;
 
 import com.osiki.fintechafricaui.entity.Users;
 import com.osiki.fintechafricaui.entity.VerificationToken;
+import com.osiki.fintechafricaui.model.LoginModel;
 import com.osiki.fintechafricaui.model.UsersModel;
+import com.osiki.fintechafricaui.response.LoginResponse;
 
 import java.util.Optional;
 
@@ -26,4 +28,6 @@ public interface UsersService {
     void changePassword(Users users, String newPassword);
 
     boolean checkIfValidOldPassword(Users user, String oldPassword);
+
+    LoginResponse loginUser(LoginModel loginModel);
 }

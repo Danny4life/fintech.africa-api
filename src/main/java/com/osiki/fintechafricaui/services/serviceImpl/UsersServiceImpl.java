@@ -3,7 +3,9 @@ package com.osiki.fintechafricaui.services.serviceImpl;
 import com.osiki.fintechafricaui.entity.PasswordResetToken;
 import com.osiki.fintechafricaui.entity.Users;
 import com.osiki.fintechafricaui.entity.VerificationToken;
+import com.osiki.fintechafricaui.model.LoginModel;
 import com.osiki.fintechafricaui.model.UsersModel;
+import com.osiki.fintechafricaui.response.LoginResponse;
 import com.osiki.fintechafricaui.respository.PasswordResetTokenRepository;
 import com.osiki.fintechafricaui.respository.UsersRepository;
 import com.osiki.fintechafricaui.respository.VerificationTokenRepository;
@@ -148,5 +150,36 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public boolean checkIfValidOldPassword(Users user, String oldPassword) {
         return passwordEncoder.matches(oldPassword, user.getPassword());
+    }
+
+    @Override
+    public LoginResponse loginUser(LoginModel loginModel) {
+
+        String msg = "";
+        Users user1 = usersRepository.findByEmail(loginModel.getEmail());
+
+        if(user1 != null){
+            String password = loginModel.getPassword();
+            String encondedPassword = user1.getPassword();
+            Boolean isPasswordRight = passwordEncoder.matches(password, encondedPassword);
+
+            if(isPasswordRight){
+                Optional<Users> user =
+                        usersRepository.findOneByEmailOrPassword(loginModel.getEmail(), encondedPassword);
+
+                if(user.isPresent()){
+
+                    return new LoginResponse("Login successful", true);
+
+                }else {
+                    return new LoginResponse("Login failed", false);
+                }
+            }else {
+                return new LoginResponse("Email or password not match", false);
+            }
+        } else {
+            return new LoginResponse("Email does not exists", false);
+        }
+
     }
 }
