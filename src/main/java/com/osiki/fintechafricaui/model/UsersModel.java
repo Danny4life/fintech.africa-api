@@ -9,6 +9,7 @@ import javax.persistence.Column;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class UsersModel {
 
     private String firstName;

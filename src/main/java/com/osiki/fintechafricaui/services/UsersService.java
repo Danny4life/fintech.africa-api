@@ -30,4 +30,5 @@ public interface UsersService {
     boolean checkIfValidOldPassword(Users user, String oldPassword);
 
     LoginResponse loginUser(LoginModel loginModel);
+
 }

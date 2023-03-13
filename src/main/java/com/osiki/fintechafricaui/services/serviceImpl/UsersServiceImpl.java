@@ -3,6 +3,7 @@ package com.osiki.fintechafricaui.services.serviceImpl;
 import com.osiki.fintechafricaui.entity.PasswordResetToken;
 import com.osiki.fintechafricaui.entity.Users;
 import com.osiki.fintechafricaui.entity.VerificationToken;
+import com.osiki.fintechafricaui.exception.EmailAlreadyTakenException;
 import com.osiki.fintechafricaui.model.LoginModel;
 import com.osiki.fintechafricaui.model.UsersModel;
 import com.osiki.fintechafricaui.response.LoginResponse;
