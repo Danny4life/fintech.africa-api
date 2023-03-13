@@ -36,7 +36,6 @@ public class UsersServiceImpl implements UsersService {
     public Users createUsersAccount(UsersModel usersModel) {
 
         Users user = new Users();
-
         user.setFirstName(usersModel.getFirstName());
         user.setLastName(usersModel.getLastName());
         user.setEmail(usersModel.getEmail());
