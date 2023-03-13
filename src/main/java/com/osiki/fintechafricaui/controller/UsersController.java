@@ -29,7 +29,7 @@ public class UsersController {
     private ApplicationEventPublisher publisher;
 
     @PostMapping("/register")
-    public String createUsersAccount(@RequestBody UsersModel usersModel, final HttpServletRequest request){
+    public ResponseEntity<String> createUsersAccount(@RequestBody UsersModel usersModel, final HttpServletRequest request){
 
         Users user = usersService.createUsersAccount(usersModel);
         publisher.publishEvent(new RegistrationCompleteEvent(
@@ -37,7 +37,7 @@ public class UsersController {
                 applicationUrl(request)
         ));
 
-        return "Registration Successful";
+        return ResponseEntity.ok("Registration successful");
 
     }
 

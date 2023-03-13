@@ -36,6 +36,12 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public Users createUsersAccount(UsersModel usersModel) {
 
+        Users userExists = usersRepository.findByEmail(usersModel.getEmail());
+
+        if(userExists != null){
+            throw new EmailAlreadyTakenException("Email already exists");
+        }
+
         Users user = new Users();
         user.setFirstName(usersModel.getFirstName());
         user.setLastName(usersModel.getLastName());
