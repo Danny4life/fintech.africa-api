@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 import java.util.UUID;
-@CrossOrigin(origins = "http://127.0.0.1:5173/")
+@CrossOrigin(origins = "http://127.0.0.1:5173")
 @RestController
 @Slf4j
 public class UsersController {
