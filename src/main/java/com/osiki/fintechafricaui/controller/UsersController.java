@@ -3,12 +3,15 @@ package com.osiki.fintechafricaui.controller;
 import com.osiki.fintechafricaui.entity.Users;
 import com.osiki.fintechafricaui.entity.VerificationToken;
 import com.osiki.fintechafricaui.event.RegistrationCompleteEvent;
+import com.osiki.fintechafricaui.model.LoginModel;
 import com.osiki.fintechafricaui.model.PasswordModel;
 import com.osiki.fintechafricaui.model.UsersModel;
+import com.osiki.fintechafricaui.response.LoginResponse;
 import com.osiki.fintechafricaui.services.UsersService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +38,16 @@ public class UsersController {
         ));
 
         return "Registration Successful";
+
+    }
+
+    @PostMapping("/login")
+
+    public ResponseEntity<?> loginUser(@RequestBody LoginModel loginModel){
+
+        LoginResponse loginResponse = usersService.loginUser(loginModel);
+
+        return ResponseEntity.ok(loginResponse);
 
     }
 
