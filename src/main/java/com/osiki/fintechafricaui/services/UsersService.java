@@ -31,5 +31,5 @@ public interface UsersService {
 
     LoginResponse loginUser(LoginModel loginModel);
 
-    UsersModel getUser(Long id, UsersModel usersModel);
+    UsersModel updateUser(Long id, UsersModel usersModel);
 }

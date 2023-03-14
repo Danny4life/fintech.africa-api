@@ -134,9 +134,17 @@ public class UsersController {
 
     }
 
+    @GetMapping("/getUser/{id}")
+    public ResponseEntity<UsersModel> getUsersById(@PathVariable Long id){
+        UsersModel usersModel = null;
+        usersModel = usersService.getUsersById(id);
+        return ResponseEntity.ok(usersModel);
+
+    }
+
     @PutMapping("/getUser/{id}")
-    public ResponseEntity<UsersModel> getUser(@PathVariable Long id, @RequestBody UsersModel usersModel){
-        usersModel = usersService.getUser(id, usersModel);
+    public ResponseEntity<UsersModel> updateUser(@PathVariable Long id, @RequestBody UsersModel usersModel){
+        usersModel = usersService.updateUser(id, usersModel);
 
         return ResponseEntity.ok(usersModel);
 

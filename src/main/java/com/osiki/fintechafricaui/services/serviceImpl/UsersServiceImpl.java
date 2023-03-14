@@ -190,7 +190,7 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public UsersModel getUser(Long id, UsersModel usersModel) {
+    public UsersModel updateUser(Long id, UsersModel usersModel) {
 
         Users user = usersRepository.findById(id).get();
         user.setFirstName(usersModel.getFirstName());
