@@ -134,6 +134,14 @@ public class UsersController {
 
     }
 
+    @PutMapping("/getUser/{id}")
+    public ResponseEntity<UsersModel> getUser(@PathVariable Long id, @RequestBody UsersModel usersModel){
+        usersModel = usersService.getUser(id, usersModel);
+
+        return ResponseEntity.ok(usersModel);
+
+    }
+
     private String passwordResetTokenMail(Users user, String applicationUrl, String token) {
 
         String url =
