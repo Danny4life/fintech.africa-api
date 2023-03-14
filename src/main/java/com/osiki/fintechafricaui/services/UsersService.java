@@ -32,4 +32,6 @@ public interface UsersService {
     LoginResponse loginUser(LoginModel loginModel);
 
     UsersModel updateUser(Long id, UsersModel usersModel);
+
+    UsersModel getUsersById(Long id);
 }

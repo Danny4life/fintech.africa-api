@@ -11,6 +11,7 @@ import com.osiki.fintechafricaui.respository.PasswordResetTokenRepository;
 import com.osiki.fintechafricaui.respository.UsersRepository;
 import com.osiki.fintechafricaui.respository.VerificationTokenRepository;
 import com.osiki.fintechafricaui.services.UsersService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -199,6 +200,15 @@ public class UsersServiceImpl implements UsersService {
         user.setPhoneNumber(usersModel.getPhoneNumber());
         user.setBvn(usersModel.getBvn());
         usersRepository.save(user);
+        return usersModel;
+    }
+
+    @Override
+    public UsersModel getUsersById(Long id) {
+
+        Users user = usersRepository.findById(id).get();
+        UsersModel usersModel = new UsersModel();
+        BeanUtils.copyProperties(user, usersModel);
         return usersModel;
     }
 }
