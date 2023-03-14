@@ -188,4 +188,17 @@ public class UsersServiceImpl implements UsersService {
         }
 
     }
+
+    @Override
+    public UsersModel getUser(Long id, UsersModel usersModel) {
+
+        Users user = usersRepository.findById(id).get();
+        user.setFirstName(usersModel.getFirstName());
+        user.setLastName(usersModel.getLastName());
+        user.setEmail(usersModel.getEmail());
+        user.setPhoneNumber(usersModel.getPhoneNumber());
+        user.setBvn(usersModel.getBvn());
+        usersRepository.save(user);
+        return usersModel;
+    }
 }
