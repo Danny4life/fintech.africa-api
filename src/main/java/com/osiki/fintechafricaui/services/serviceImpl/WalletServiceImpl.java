@@ -24,6 +24,9 @@ public class WalletServiceImpl implements WalletService {
 
     @Override
     public WalletModel viewWalletDetails() throws UserNotFoundException {
+
+
+
         WalletModel walletModel = new WalletModel();
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Users users = usersRepository.findByEmail(user.getUsername());
