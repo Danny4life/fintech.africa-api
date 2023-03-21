@@ -18,6 +18,7 @@ public class WalletServiceImpl implements WalletService {
 
     @Override
     public WalletModel viewWalletDetails() {
+        WalletModel walletModel = new WalletModel();
         return null;
     }
 }
