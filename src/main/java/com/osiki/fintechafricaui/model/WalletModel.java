@@ -4,20 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
-public class UsersModel {
+public class WalletModel {
 
     private String firstName;
     private String lastName;
-    private String email;
-    private String phoneNumber;
-    private String password;
-    private String confirmPassword;
-    private String bvn;
-    private String pin;
+    private Double balance;
+    private String accountNumber;
+    private String bankName;
 }
