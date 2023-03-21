@@ -1,5 +1,6 @@
 package com.osiki.fintechafricaui.services.serviceImpl;
 
+import com.osiki.fintechafricaui.model.WalletModel;
 import com.osiki.fintechafricaui.respository.UsersRepository;
 import com.osiki.fintechafricaui.respository.WalletRepository;
 import com.osiki.fintechafricaui.services.WalletService;
@@ -14,4 +15,9 @@ public class WalletServiceImpl implements WalletService {
 
     @Autowired
     private UsersRepository usersRepository;
+
+    @Override
+    public WalletModel viewWalletDetails() {
+        return null;
+    }
 }
