@@ -25,4 +25,6 @@ public class Users {
     private String pin;
     private String role;
     private boolean enabled = false;
+    @OneToOne(mappedBy = "users")
+    private Wallet wallet;
 }
